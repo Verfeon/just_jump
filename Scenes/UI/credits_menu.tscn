@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnajbrubjdgwb"]
+
+[ext_resource type="Theme" uid="uid://c6ivnsmdfi4k" path="res://Ressources/theme.tres" id="1_pf8rm"]
+[ext_resource type="Script" uid="uid://bd0m4xpxbb8o1" path="res://Scripts/UI/menu.gd" id="2_pf8rm"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_pf8rm"]
+button_index = 1
+
+[sub_resource type="Shortcut" id="Shortcut_xqd6p"]
+events = [SubResource("InputEventJoypadButton_pf8rm")]
+
+[node name="credits_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pf8rm")
+script = ExtResource("2_pf8rm")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 40.0
+offset_right = 1870.0
+offset_bottom = 1040.0
+color = Color(0.3137255, 0.3137255, 0.3137255, 0.8627451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Game and art by Noé Freville
+Music :
+ \"My Giant Bunny Friend\" by Bryan Teoh (freepd.com)
+Sound Effects :
+ jump - \"SlimeJump\" by freesound_cummunity (pixabay.com)
+ landing - \"Slime Impact\" by Universfield (pixabay.com)
+ button - \"Arcade UI 6\" by floraphonic (pixabay.com)
+ win - \"Arcade UI 3\" by floraphonic (pixabay.com)
+"
+
+[node name="Close" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+shortcut = SubResource("Shortcut_xqd6p")
+text = "CLOSE"
+
+[connection signal="pressed" from="VBoxContainer/Close" to="." method="_on_close_pressed"]

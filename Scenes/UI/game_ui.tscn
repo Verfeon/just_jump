@@ -1,0 +1,173 @@
+[gd_scene load_steps=17 format=3 uid="uid://3exx6dunr8ys"]
+
+[ext_resource type="Script" uid="uid://bf4yeyj5mpc1c" path="res://Scripts/UI/game_ui.gd" id="1_mnd0w"]
+[ext_resource type="Texture2D" uid="uid://yitlf5pxchph" path="res://art/Visual/MenuIcon.png" id="2_bhxso"]
+[ext_resource type="Texture2D" uid="uid://dkks35pemjw3h" path="res://art/Visual/RetryIcon.png" id="3_0pgsb"]
+[ext_resource type="Texture2D" uid="uid://0dtaf0dapap" path="res://art/Visual/SettingsIcon.png" id="4_q6rob"]
+[ext_resource type="Theme" uid="uid://c6ivnsmdfi4k" path="res://Ressources/theme.tres" id="5_wkbk7"]
+[ext_resource type="Script" uid="uid://bxxpmjaye00de" path="res://Scripts/UI/time.gd" id="6_f07i2"]
+[ext_resource type="Script" uid="uid://cubwpjtdwg31w" path="res://Scripts/UI/high_score.gd" id="7_pwiya"]
+[ext_resource type="PackedScene" uid="uid://c80kmncpxfqy1" path="res://Scenes/UI/settings_menu.tscn" id="8_fd57w"]
+[ext_resource type="Texture2D" uid="uid://cvkm2ul3vjdsc" path="res://art/Visual/TextDisplay.png" id="9_m2lyg"]
+[ext_resource type="Script" uid="uid://b6foj1g80l7qw" path="res://Scripts/UI/victory_text.gd" id="10_bhxso"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fevyy"]
+button_index = 6
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_rdfk5"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_llaam"]
+events = [SubResource("InputEventJoypadButton_fevyy"), SubResource("InputEventKey_rdfk5")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_b3802"]
+keycode = 82
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_b3802"]
+button_index = 2
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_sr7wx"]
+events = [SubResource("InputEventKey_b3802"), SubResource("InputEventJoypadButton_b3802")]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mnd0w")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 30
+
+[node name="Menu" type="Button" parent="UI/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../VictoryText/HBoxContainer/Menu")
+shortcut = SubResource("Shortcut_llaam")
+icon = ExtResource("2_bhxso")
+flat = true
+expand_icon = true
+
+[node name="Retry" type="Button" parent="UI/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../VictoryText/HBoxContainer/Menu")
+shortcut = SubResource("Shortcut_sr7wx")
+icon = ExtResource("3_0pgsb")
+flat = true
+expand_icon = true
+
+[node name="Settings" type="Button" parent="UI/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../VictoryText/HBoxContainer/Menu")
+icon = ExtResource("4_q6rob")
+flat = true
+expand_icon = true
+
+[node name="Time" type="Label" parent="UI/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("5_wkbk7")
+text = "00:00"
+script = ExtResource("6_f07i2")
+
+[node name="ColorRect" type="ColorRect" parent="UI/HBoxContainer/Time"]
+show_behind_parent = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 150.0
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="HighScore" type="Label" parent="UI/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("5_wkbk7")
+text = "HighScore : 00:00"
+script = ExtResource("7_pwiya")
+
+[node name="ColorRect" type="ColorRect" parent="UI/HBoxContainer/HighScore"]
+show_behind_parent = true
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 0
+offset_right = 150.0
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="settings_menu" parent="UI" instance=ExtResource("8_fd57w")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+focus_mode = 2
+
+[node name="VictoryText" type="TextureRect" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -96.0
+offset_right = 192.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme = ExtResource("5_wkbk7")
+texture = ExtResource("9_m2lyg")
+script = ExtResource("10_bhxso")
+
+[node name="Label" type="Label" parent="UI/VictoryText"]
+custom_minimum_size = Vector2(288, 144)
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Congratulations ! You finished level"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VictoryText"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 125.0
+offset_right = 323.0
+offset_bottom = 166.0
+
+[node name="Menu" type="Button" parent="UI/VictoryText/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HBoxContainer/Settings")
+focus_neighbor_right = NodePath("../NextLevel")
+theme_override_font_sizes/font_size = 30
+text = "MENU"
+
+[node name="NextLevel" type="Button" parent="UI/VictoryText/HBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Menu")
+focus_neighbor_top = NodePath("../../../HBoxContainer/Settings")
+theme_override_font_sizes/font_size = 30
+text = "NEXT LEVEL"
+
+[connection signal="pressed" from="UI/HBoxContainer/Menu" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UI/VictoryText/HBoxContainer/Menu" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UI/VictoryText/HBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]

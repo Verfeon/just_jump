@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://be4unmmxr6uwo"]
+
+[ext_resource type="Theme" uid="uid://c6ivnsmdfi4k" path="res://Ressources/theme.tres" id="1_as82s"]
+[ext_resource type="Script" uid="uid://bd0m4xpxbb8o1" path="res://Scripts/UI/menu.gd" id="2_nx4h5"]
+[ext_resource type="Script" uid="uid://bronxruk680x2" path="res://Scripts/UI/controls_label.gd" id="3_wn057"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_nx4h5"]
+button_index = 1
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_wn057"]
+events = [SubResource("InputEventJoypadButton_nx4h5")]
+
+[node name="controls_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_as82s")
+script = ExtResource("2_nx4h5")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 40.0
+offset_right = 1870.0
+offset_bottom = 1040.0
+color = Color(0.3137255, 0.3137255, 0.3137255, 0.8627451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+text = "Hold \"SPACE\" to charge and release it to jump towards mouse cursor"
+autowrap_mode = 2
+script = ExtResource("3_wn057")
+
+[node name="Close" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+shortcut = SubResource("Shortcut_wn057")
+text = "CLOSE"
+
+[connection signal="pressed" from="VBoxContainer/Close" to="." method="_on_close_pressed"]

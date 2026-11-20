@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://phgtb50w6snk"]
+
+[ext_resource type="Texture2D" uid="uid://dokewttnrcl2i" path="res://art/Visual/Lever.png" id="1_5myib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i0jt"]
+atlas = ExtResource("1_5myib")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3ptj"]
+atlas = ExtResource("1_5myib")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqs8y"]
+atlas = ExtResource("1_5myib")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr04h"]
+atlas = ExtResource("1_5myib")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4sht"]
+atlas = ExtResource("1_5myib")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdkqk"]
+atlas = ExtResource("1_5myib")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlsm3"]
+atlas = ExtResource("1_5myib")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgaob"]
+atlas = ExtResource("1_5myib")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i0jt")
+}],
+"loop": false,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3ptj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqs8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr04h")
+}],
+"loop": false,
+"name": &"Closing",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4sht")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdkqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlsm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgaob")
+}],
+"loop": false,
+"name": &"Opening",
+"speed": 3.0
+}]
